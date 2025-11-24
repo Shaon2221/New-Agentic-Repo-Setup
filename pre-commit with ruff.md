@@ -1,0 +1,68 @@
+To enforce **Ruff** for both linting and formatting in your repository using `pre-commit`, you need to configure the `.pre-commit-config.yaml` file to use the official Ruff hooks.
+
+Here is the step-by-step implementation guide.
+
+### 1\. Install pre-commit
+
+If you haven't already, install the `pre-commit` package in your local environment.
+
+```bash
+pip install pre-commit
+```
+
+### 2\. Create or Update `.pre-commit-config.yaml`
+
+Create a file named `.pre-commit-config.yaml` in the root of your repository (or append to it if it exists). Add the following configuration to use both the **linter** and the **formatter**.
+
+```yaml
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.4.4  # distinct from the Ruff version; check the repo for the latest tag
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter
+      - id: ruff-format
+```
+
+  * **`id: ruff`**: This runs the linter (replaces Flake8, isort, etc.). The `args: [ --fix ]` line tells it to automatically fix simple issues (like unused imports) instead of just complaining about them.
+  * **`id: ruff-format`**: This runs the formatter (replaces Black). It rewrites your code to match the standard style.
+
+### 3\. Install the Git Hook
+
+Run this command to "activate" the config. This installs a git hook script into your `.git/hooks/` directory.
+
+```bash
+pre-commit install
+```
+
+Now, every time you run `git commit`, Ruff will automatically run on the staged files.
+
+### 4\. How to Use & Verify
+
+#### Automatic Usage (On Commit)
+
+When you commit changes, `pre-commit` will intercept the process.
+
+  * If Ruff fixes a file (e.g., reformats it), the commit will **fail** so you can review the changes.
+  * You simply need to `git add` the changes Ruff made and run `git commit` again.
+
+#### Manual Usage (Run on All Files)
+
+To check your entire repository immediately without committing (great for first-time setup), run:
+
+```bash
+pre-commit run --all-files
+```
+
+### Summary of Commands
+
+| Goal | Command |
+| :--- | :--- |
+| **Install** | `pip install pre-commit` |
+| **Activate** | `pre-commit install` |
+| **Run Manually** | `pre-commit run --all-files` |
+| **Update Versions** | `pre-commit autoupdate` |
+
