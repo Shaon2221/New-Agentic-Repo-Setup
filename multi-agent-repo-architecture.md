@@ -42,6 +42,8 @@ tests/
 .gitignore                   # local file/scripts that we don’t want to push in git
 .python-version              # Pins Python version for uv
 .pre-commit-config.yaml      # enforcing code quality
+.env                         # secret/API Key credentials
+.env.example                 # secret/API Key credentials example
 uv.lock                      # uv lock file (replaces poetry.lock/requirements.txt)
 pyproject.toml               # Single source of truth for dependencies & tool config
 Dockerfile                   # Multi-stage build optimized for uv
