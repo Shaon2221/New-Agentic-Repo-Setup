@@ -1,3 +1,4 @@
+```
 .github/
   ├── workflows/             # GitHub Actions YAML files CI/CD (Test, Lint, Build)
   └── ISSUE_TEMPLATE/        # Standardized bug reports/feature requests
@@ -47,3 +48,4 @@ Dockerfile                   # Multi-stage build optimized for uv
 docker-compose.yml           # run and connect one or more containers together
 pytest.ini                   # Test configuration
 README.md                    # Overview, Architecture, Usage
+```
