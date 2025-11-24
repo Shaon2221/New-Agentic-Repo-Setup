@@ -230,7 +230,7 @@ docker compose up -d
 4.  **Deploy Production:** CI runner creates `.env.prod` from secrets, sets `ENV_PATH=.env.prod`, and starts the container using `myapp:v1.0.0`.
 
 **Dockerfile**
-# Use official Python image
+```# Use official Python image
 FROM python:3.14-slim
 
 # Set work directory inside container
@@ -258,10 +258,11 @@ EXPOSE 8000
 
 # Start FastAPI using uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-
+```
 
 **.dockerignore**
 
+```
 .git
 .gitignore
 .github/
@@ -289,8 +290,10 @@ Thumbs.db
 # Tests and local docs (not needed at runtime)
 tests/
 README.md
+```
 
 **docker-compose.yml**
+```
 name: 
 services:
   "name_here":
@@ -310,7 +313,7 @@ services:
     # Use Dockerfile CMD (uvicorn ...) instead of overriding with a reload/dev command for parity with `docker run` example.
     # For a live-reload dev experience, you can create a second service or uncomment below:
     # command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-
+```
 
 Here is the breakdown of the difference between a **Dockerfile** and a **Docker Compose** file, using the "Construction" analogy to make it clear.
 
