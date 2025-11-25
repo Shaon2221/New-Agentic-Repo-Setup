@@ -16,14 +16,19 @@ Create a file named `.pre-commit-config.yaml` in the root of your repository (or
 
 ```yaml
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
-    rev: v0.4.4  # distinct from the Ruff version; check the repo for the latest tag
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-      # Run the linter
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.6
+    hooks:
       - id: ruff
         args: [ --fix ]
-      # Run the formatter
       - id: ruff-format
 ```
 
