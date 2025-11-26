@@ -30,6 +30,7 @@ ci/                          # Scripts for CI/CD
   └── run_evals.py
 tests/
   ├── unit/			            # Fast, mock-heavy tests
+  ├── smoke/			          # Verify application is up and running, critical paths are functional
   ├── integration/	        # DB/Docker connected tests
   └── evals/			          # AI quality checks (Arize/LLM-as-a-judge)
 .dockerignore			          # which are not required for build
