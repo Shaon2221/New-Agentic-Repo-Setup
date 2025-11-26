@@ -30,6 +30,30 @@ repos:
       - id: ruff
         args: [ --fix ]
       - id: ruff-format
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.9.12
+    hooks:
+      - id: uv-lock
+
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run pyright
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: uv run pytest
+        language: system
+        pass_filenames: false
+        always_run: true
 ```
 
   * **`id: ruff`**: This runs the linter (replaces Flake8, isort, etc.). The `args: [ --fix ]` line tells it to automatically fix simple issues (like unused imports) instead of just complaining about them.
